@@ -2,7 +2,7 @@
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
-export ZSH="/Users/jamieguerrero/.oh-my-zsh"
+export ZSH="$HOME/.oh-my-zsh"
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
@@ -102,17 +102,19 @@ source $ZSH/oh-my-zsh.sh
 
 
 # When zsh shell initializes, 
+# Only run these commands for my personal computer
+if
+  # Enable brew
+  eval $(/opt/homebrew/bin/brew shellenv)
 
-# Enable brew
-eval $(/opt/homebrew/bin/brew shellenv)
+  # Enable dev
+  # [[ -f /opt/dev/sh/chruby/chruby.sh ]] && type chruby >/dev/null 2>&1 || chruby () { source /opt/dev/sh/chruby/chruby.sh; chruby "$@"; }
+  [ -f /opt/dev/dev.sh ] && source /opt/dev/dev.sh
 
-# Enable dev
-# [[ -f /opt/dev/sh/chruby/chruby.sh ]] && type chruby >/dev/null 2>&1 || chruby () { source /opt/dev/sh/chruby/chruby.sh; chruby "$@"; }
-[ -f /opt/dev/dev.sh ] && source /opt/dev/dev.sh
+  # Enable nvm
+  export NVM_DIR=~/.nvm
+  source $(brew --prefix nvm)/nvm.sh
+  [[ -x /opt/homebrew/bin/brew ]] && eval $(/opt/homebrew/bin/brew shellenv)
+fi
 
-# Enable nvm
-export NVM_DIR=~/.nvm
-source $(brew --prefix nvm)/nvm.sh
-[[ -x /opt/homebrew/bin/brew ]] && eval $(/opt/homebrew/bin/brew shellenv)
-
-alias config='/usr/bin/git --git-dir=/Users/jamieguerrero/.cfg/ --work-tree=/Users/jamieguerrero'
+alias config='/usr/bin/git --git-dir=/Users/jamie

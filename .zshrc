@@ -103,7 +103,7 @@ source $ZSH/oh-my-zsh.sh
 
 # When zsh shell initializes, 
 # Only run these commands for my personal computer
-if whoami == 'jamieguerrero'; then
+if whoami = 'jamieguerrero'; then
   # Enable brew
   eval $(/opt/homebrew/bin/brew shellenv)
 

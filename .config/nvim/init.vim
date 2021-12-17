@@ -27,6 +27,8 @@ Plug 'nvim-telescope/telescope.nvim'
 Plug 'glepnir/dashboard-nvim'
 Plug 'martinsione/darkplus.nvim'
 
+Plug 'ryanoasis/vim-devicons'
+
 " Initialize plugin system
 call plug#end()
 

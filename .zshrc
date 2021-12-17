@@ -103,7 +103,7 @@ source $ZSH/oh-my-zsh.sh
 
 # When zsh shell initializes, 
 # Only run these commands for my personal computer
-if whoami = 'jamieguerrero'; then
+if [ "$(whoami)" = "jamieguerrero" ] ; then
   # Enable brew
   eval $(/opt/homebrew/bin/brew shellenv)
 
@@ -117,4 +117,4 @@ if whoami = 'jamieguerrero'; then
   [[ -x /opt/homebrew/bin/brew ]] && eval $(/opt/homebrew/bin/brew shellenv)
 fi
 
-alias config='/usr/bin/git --git-dir=/Users/jamie
+alias config='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'

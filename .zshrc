@@ -99,9 +99,13 @@ source $ZSH/oh-my-zsh.sh
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
+alias fuckinpush="git push -f --no-verify"
+alias pushbaby="git push -f --no-verify"
+alias stash="git add . && git stash"
+alias pop="git stash pop"
+alias gitdash="gco developer-dashboard-prototype"
 
-
-# When zsh shell initializes, 
+# When zsh shell initializes,
 # Only run these commands for my personal computer
 if [ "$(whoami)" = "jamieguerrero" ] ; then
   # Enable brew

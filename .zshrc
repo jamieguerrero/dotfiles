@@ -14,14 +14,18 @@ source $ZSH/oh-my-zsh.sh
 # When zsh shell initializes,
 # Only run these commands for my personal computer
 if [ "$(whoami)" = "jamieguerrero" ] ; then
-  # Enable brew
-  eval $(/opt/homebrew/bin/brew shellenv)
+  # Enable brew (check both Intel and Apple Silicon paths)
+  if [ -f /opt/homebrew/bin/brew ]; then
+    eval $(/opt/homebrew/bin/brew shellenv)
+  elif [ -f /usr/local/bin/brew ]; then
+    eval $(/usr/local/bin/brew shellenv)
+  fi
 
   # Enable dev (Shopify)
   [ -f /opt/dev/dev.sh ] && source /opt/dev/dev.sh
 
-  # Enable nvm
-  export NVM_DIR=~/.nvm
-  source $(brew --prefix nvm)/nvm.sh
-  [[ -x /opt/homebrew/bin/brew ]] && eval $(/opt/homebrew/bin/brew shellenv)
+  # Enable nvm (check multiple paths)
+  export NVM_DIR="$HOME/.nvm"
+  [ -s "/opt/homebrew/opt/nvm/nvm.sh" ] && source "/opt/homebrew/opt/nvm/nvm.sh"
+  [ -s "/usr/local/opt/nvm/nvm.sh" ] && source "/usr/local/opt/nvm/nvm.sh"
 fi

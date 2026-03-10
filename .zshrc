@@ -29,3 +29,13 @@ if [ "$(whoami)" = "jamieguerrero" ] ; then
   [ -s "/opt/homebrew/opt/nvm/nvm.sh" ] && source "/opt/homebrew/opt/nvm/nvm.sh"
   [ -s "/usr/local/opt/nvm/nvm.sh" ] && source "/usr/local/opt/nvm/nvm.sh"
 fi
+
+# tec profile (must come AFTER Homebrew so tec tools take priority)
+[[ -x /Users/jamieguerrero/.local/state/tec/profiles/base/current/global/init ]] && eval "$(/Users/jamieguerrero/.local/state/tec/profiles/base/current/global/init zsh)"
+
+# bun completions
+[ -s "/Users/jamieguerrero/.bun/_bun" ] && source "/Users/jamieguerrero/.bun/_bun"
+
+# bun
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"

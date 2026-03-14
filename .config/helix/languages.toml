@@ -1,0 +1,62 @@
+# ~/.config/helix/languages.toml
+# Thanks to reykjalin for providing these sensible defaults!
+
+# Extends the base config from https://github.com/helix-editor/helix/blob/master/languages.toml
+
+[language-server.tsgo]
+command = "npx"
+args = ["tsgo", "--lsp", "--stdio"]
+
+[language-server.efm]
+command = "efm-langserver"
+
+[[language]]
+name = "markdown"
+
+# Soft-wrap markdown files.
+[language.soft-wrap]
+enable = true
+wrap-at-text-width = true
+
+[[language]]
+name = "javascript"
+language-servers = [ "tsgo" ]
+formatter = { command = "npx", args = [ "prettier", "--parser", "typescript" ] }
+auto-format = true
+
+[[language]]
+name = "jsx"
+language-servers = [ "tsgo" ]
+formatter = { command = "npx", args = [ "prettier", "--parser", "typescript" ] }
+auto-format = true
+
+
+[[language]]
+name = "typescript"
+auto-format = true
+formatter = { command = "npx", args = [ "prettier", "--parser", "typescript" ] }
+language-servers = [
+  "tsgo",
+  { name = "efm", only-features = [ "diagnostics" ] }
+]
+
+[[language]]
+name = "tsx"
+auto-format = true
+formatter = { command = "npx", args = [ "prettier", "--parser", "typescript" ] }
+language-servers = [
+  "tsgo",
+  { name = "efm", only-features = [ "diagnostics" ] }
+]
+
+[[language]]
+name = "scss"
+language-servers = [
+  { name = "efm", only-features = [ "diagnostics" ] },
+]
+
+[[language]]
+name = "css"
+language-servers = [
+  { name = "efm", only-features = [ "diagnostics" ] },
+]

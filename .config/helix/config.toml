@@ -1,0 +1,62 @@
+# ~/.config/helix/config.toml
+# Thanks to reykjalin for providing these sensible defaults!
+
+theme = "catppuccin_mocha"
+# theme = "catppuccin_latte"
+
+[editor]
+auto-pairs = false
+bufferline = "multiple"
+color-modes = true
+completion-replace = true
+cursorline = true
+end-of-line-diagnostics = "hint"
+line-number = "relative"
+popup-border = "all"
+rulers = [ 100 ]
+scroll-lines = 1
+text-width = 100
+true-color = true
+undercurl = true
+
+[editor.gutters]
+layout = ["diff", "diagnostics", "line-numbers", "spacer"]
+
+[editor.cursor-shape]
+insert = "bar"
+
+[editor.indent-guides]
+render = true
+character = "▏"
+skip-levels = 1
+
+[editor.inline-diagnostics]
+cursor-line = "warning"
+other-lines = "disable"
+
+[keys.insert]
+j = { k = "normal_mode" }
+
+[keys.normal.space.o]
+f = ":sh zellij run -n open-file -c -f -x 10%% -y 10%% --width 80%% --height 80%% -- fish ~/.config/helix/zellij-fuzzy-picker.fish open %{buffer_name}"
+y = ":sh zellij run -n Yazi -c -f -x 10%% -y 10%% --width 80%% --height 80%% -- fish ~/.config/helix/zellij-yazi-picker.fish open %{buffer_name}"
+t = ":sh zellij run -n dev-test -f -x 10%% -y 10%% --width 80%% --height 80%% -- dev test %{buffer_name}"
+l = ":sh zellij run -n stylelint -f -x 10%% -y 10%% --width 80%% --height 80%% -- npx stylelint %{buffer_name}"
+e = ":sh npx eslint %{buffer_name} || exit 0"
+
+[keys.normal.space.o.c]
+f = ":sh echo %{buffer_name} | xargs echo -n | pbcopy"
+
+[keys.normal.space.o.g]
+d = ":sh zellij run -n git-diff -c --floating -x 10%% -y 10%% --width 80%% --height 80%% -- fish ~/.config/helix/zellij-git-diff.fish %{buffer_name}"
+D = ":sh zellij run -n git-diff -c --floating -x 10%% -y 10%% --width 80%% --height 80%% -- fish ~/.config/helix/zellij-git-diff.fish"
+h = ":sh gh browse --commit \"%{buffer_name}:%{selection_line_start}-%{selection_line_end}\""
+b = ":sh git blame -L %{selection_line_start},%{selection_line_end} %{buffer_name}"
+
+[keys.normal.space.o.v]
+f = ":sh zellij run -n open-file -c -f -x 10%% -y 10%% --width 80%% --height 80%% -- fish ~/.config/helix/zellij-fuzzy-picker.fish vsplit %{buffer_name}"
+y = ":sh zellij run -n Yazi -c -f -x 10%% -y 10%% --width 80%% --height 80%% -- fish ~/.config/helix/zellij-yazi-picker.fish vsplit %{buffer_name}"
+
+[keys.normal.space.o.h]
+f = ":sh zellij run -n open-file -c -f -x 10%% -y 10%% --width 80%% --height 80%% -- fish ~/.config/helix/zellij-fuzzy-picker.fish hsplit %{buffer_name}"
+y = ":sh zellij run -n Yazi -c -f -x 10%% -y 10%% --width 80%% --height 80%% -- fish ~/.config/helix/zellij-yazi-picker.fish hsplit %{buffer_name}"

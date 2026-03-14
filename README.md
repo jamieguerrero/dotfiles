@@ -1,6 +1,6 @@
 # Jamie's Dotfiles
 
-Modern, minimal Neovim setup with native LSP.
+Modern, minimal Neovim + Helix setup with native LSP.
 
 ## What's Included
 
@@ -14,6 +14,14 @@ Modern, minimal Neovim setup with native LSP.
 - **Theme:** TokyoNight
 - **Git:** Gitsigns
 - **Statusline:** Lualine
+
+### Helix
+- **Theme:** Catppuccin Mocha
+- **Language Servers:** tsgo (TypeScript), efm-langserver (ESLint, Stylelint)
+- **Formatting:** Prettier via auto-format on save
+- **Git:** Gutter diff indicators, git blame keybinds
+- **Fuzzy Finder:** Zellij-based file picker
+- **File Explorer:** Yazi integration via Zellij
 
 ### Shell
 - **Shell:** Zsh with oh-my-zsh
@@ -52,9 +60,56 @@ cd ~/dotfiles
 - `<C-h/j/k/l>` - Window navigation
 - `<Esc>` - Clear search highlight
 
+## Helix Dependencies
+
+Install these via Homebrew:
+
+```bash
+brew install helix          # Editor
+brew install efm-langserver # Lint/format bridge (ESLint, Stylelint)
+brew install zellij         # Terminal multiplexer (for file picker, git diff, etc.)
+brew install yazi            # Terminal file manager
+```
+
+Install these via npm:
+
+```bash
+npm install -g @anthropic-ai/tsgo  # TypeScript language server (tsgo)
+```
+
+After installing, make sure `~/.cache/efm-langserver/` exists (the install script creates it) and update the `log-file` path in `~/.config/efm-langserver/config.yaml` if needed.
+
+### Helix Key Bindings
+
+**Leader key:** `<Space>`
+
+| Key | Action |
+|-----|--------|
+| `jk` | Exit insert mode |
+| `]g` / `[g` | Next/previous git change |
+| `<Space>of` | Fuzzy file picker |
+| `<Space>oy` | Yazi file browser |
+| `<Space>ot` | Run tests for current file |
+| `<Space>ol` | Stylelint current file |
+| `<Space>oe` | ESLint current file |
+| `<Space>ocf` | Copy file path to clipboard |
+| `<Space>ogd` | Git diff current file |
+| `<Space>ogD` | Git diff all |
+| `<Space>ogh` | Open file on GitHub |
+| `<Space>ogb` | Git blame selection |
+| `<Space>ovf` | Open file in vertical split |
+| `<Space>ohf` | Open file in horizontal split |
+
 ## Post-Install
 
+### Neovim
 1. Open nvim - plugins auto-install
 2. Run `:checkhealth` to verify
 3. Mason will auto-install TypeScript LSP
-4. Enjoy! 🌙
+
+### Helix
+1. Install dependencies above
+2. Run `hx --health` to verify language servers are detected
+3. Open a `.tsx` file and check `:lsp-status` for tsgo + efm
+
+Enjoy! 🌙
